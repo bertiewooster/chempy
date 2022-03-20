@@ -138,8 +138,10 @@ Parsing formulae
 
    >>> from chempy import Substance
    >>> ferricyanide = Substance.from_formula('Fe(CN)6-3')
-   >>> ferricyanide.composition == {0: -3, 26: 1, 6: 6, 7: 6}  # 0 for charge
-   True
+   >>> ferricyanide.composition
+   {0: -3, 26: 1, 6: 6, 7: 6}   
+   >>> # Composition dictionary keys: 0 for charge, positive integers for atomic numbers
+   >>> # Composition dictionary values: Quantities of charge or atoms
    >>> print(ferricyanide.unicode_name)
    Fe(CN)₆³⁻
    >>> print(ferricyanide.latex_name + ", " + ferricyanide.html_name)
