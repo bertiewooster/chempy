@@ -140,8 +140,6 @@ Parsing formulae
    >>> ferricyanide = Substance.from_formula('Fe(CN)6-3')
    >>> ferricyanide.composition
    {0: -3, 26: 1, 6: 6, 7: 6}   
-   >>> # Composition dictionary keys: 0 for charge, positive integers for atomic numbers
-   >>> # Composition dictionary values: Quantities of charge or atoms
    >>> print(ferricyanide.unicode_name)
    Fe(CN)₆³⁻
    >>> print(ferricyanide.latex_name + ", " + ferricyanide.html_name)
@@ -150,8 +148,52 @@ Parsing formulae
    211.955
 
 
-as you see, in composition, the atomic numbers (and 0 for charge) is used as
+as you notice, in composition, the atomic numbers (and 0 for charge) is used as
 keys and the count of each kind became respective value.
+
+ChemPy can also understand notation such as
+
+- solvates (including hydrates); the notation for solvates is `..`
+
+.. code:: python
+
+   >>> from chempy import Substance
+   >>> Substance.from_formula("BaCl2..2H2O").composition
+   {1: 4, 8: 2, 17: 2, 56: 1}
+
+- non-integer subscripts
+
+.. code:: python
+
+   >>> from chempy import Substance
+   >>> Substance.from_formula("Ca2.832Fe0.6285Mg5.395(CO3)6").composition
+   >>> {6: 6, 8: 18, 12: 5.395, 20: 2.832, 26: 0.6285}
+
+- complexes
+
+.. code:: python
+
+   >>> from chempy import Substance
+   >>> Substance.from_formula("[PtCl6]-2").composition
+   >>> {0: -2, 17: 6, 78: 1}
+
+- caged species; the notation for caged species is `@`
+
+.. code:: python
+
+   >>> from chempy import Substance
+   >>> Substance.from_formula("(Li@C60)+").composition
+   >>> {0: 1, 3: 1, 6: 60}
+
+- phases; the phase can be `(s)` for solid, `(l)` for liquid, `(g)` for gas, or `(aq)` for aqueous (dissolved in water)
+
+.. code:: python
+
+   >>> from chempy import Substance
+   >>> Substance.from_formula("H2O(s)").composition
+   {1: 2, 8: 1}
+
+
 
 Balancing stoichiometry of a chemical reaction
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
