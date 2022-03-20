@@ -159,7 +159,7 @@ ChemPy can also understand notation such as
 
    >>> from chempy import Substance
    >>> Substance.from_formula("BaCl2..2H2O").composition
-   {1: 4, 8: 2, 17: 2, 56: 1}
+   {56: 1, 17: 2, 1: 4, 8: 2}
 
 - non-integer subscripts
 
@@ -167,7 +167,7 @@ ChemPy can also understand notation such as
 
    >>> from chempy import Substance
    >>> Substance.from_formula("Ca2.832Fe0.6285Mg5.395(CO3)6").composition
-   >>> {6: 6, 8: 18, 12: 5.395, 20: 2.832, 26: 0.6285}
+   {6: 6, 8: 18, 12: 5.395, 20: 2.832, 26: 0.6285}
 
 - complexes
 
@@ -175,7 +175,7 @@ ChemPy can also understand notation such as
 
    >>> from chempy import Substance
    >>> Substance.from_formula("[PtCl6]-2").composition
-   >>> {0: -2, 17: 6, 78: 1}
+   {78: 1, 17: 6, 0: -2}
 
 - caged species; the notation for caged species is ``@``
 
@@ -183,7 +183,7 @@ ChemPy can also understand notation such as
 
    >>> from chempy import Substance
    >>> Substance.from_formula("(Li@C60)+").composition
-   >>> {0: 1, 3: 1, 6: 60}
+   {0: 1, 3: 1, 6: 60}
 
 - phases; the phase can be ``(s)`` for solid, ``(l)`` for liquid, ``(g)`` for gas, or ``(aq)`` for aqueous (dissolved in water)
 
@@ -200,8 +200,8 @@ First, with the chemical formula entered correctly, the results will be as expec
 .. code:: python
 
    >>> from chempy import Substance
-   >>> methanol = Substance.from_formula("CH4")
-   >>> methanol.name
+   >>> methane = Substance.from_formula("CH4")
+   >>> methane.name
    "CH4"
    >>> methane.composition
    {6: 1, 1: 4}
@@ -216,13 +216,14 @@ Now, ChemPy will raise a ParseException:
 .. code:: python
 
    >>> from chempy import Substance
-   >>> methanol = Substance.from_formula("Ch4")
+   >>> methane_wrong = Substance.from_formula("Ch4")
    ParseException
+   Expected end of text, found 'h4'  (at char 1), (line:1, col:2)
 
 Note that ChemPy has no way of knowing that you chose the desired element 
 if the supplied formula can be interpreted as valid. For example, if you are working with 
-carbon monosulfide (``CS``) and accidentally enter ``Cs``, the symbol for the element cesium, 
-ChemPy will interpret the formula ``Cs`` as cesium.
+carbon monosulfide (``CS``) and accidentally forget to capitalize the second letter, entering ``Cs``, 
+the symbol for the element cesium, ChemPy will interpret the formula ``Cs`` as cesium.
 
 
 Balancing stoichiometry of a chemical reaction
