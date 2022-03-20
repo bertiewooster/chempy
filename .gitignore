@@ -33,3 +33,4 @@ sundials-*.tar.gz
 tmp/
 .coverage
 htmlcov/
+.vscode/
