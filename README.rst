@@ -153,7 +153,7 @@ keys and the count of each kind became respective value.
 
 ChemPy can also understand notation such as
 
-- solvates (including hydrates); the notation for solvates is `..`
+- solvates (including hydrates); the notation for solvates is ``..``
 
 .. code:: python
 
@@ -177,7 +177,7 @@ ChemPy can also understand notation such as
    >>> Substance.from_formula("[PtCl6]-2").composition
    >>> {0: -2, 17: 6, 78: 1}
 
-- caged species; the notation for caged species is `@`
+- caged species; the notation for caged species is ``@``
 
 .. code:: python
 
@@ -185,7 +185,7 @@ ChemPy can also understand notation such as
    >>> Substance.from_formula("(Li@C60)+").composition
    >>> {0: 1, 3: 1, 6: 60}
 
-- phases; the phase can be `(s)` for solid, `(l)` for liquid, `(g)` for gas, or `(aq)` for aqueous (dissolved in water)
+- phases; the phase can be ``(s)`` for solid, ``(l)`` for liquid, ``(g)`` for gas, or ``(aq)`` for aqueous (dissolved in water)
 
 .. code:: python
 
@@ -193,8 +193,8 @@ ChemPy can also understand notation such as
    >>> Substance.from_formula("H2O(s)").composition
    {1: 2, 8: 1}
 
-Breaking change in v???: Malformed chemical formulas will now yield a parse error.
-For example, consider methane, whose formula should be `"CH4"`.
+Improved parsing v???: Malformed chemical formulas will now yield a parse error.
+For example, consider methane, whose formula should be ``"CH4"``.
 First, with the chemical formula entered correctly, the results will be as expected for methane:
 
 .. code:: python
@@ -207,11 +207,11 @@ First, with the chemical formula entered correctly, the results will be as expec
    {6: 1, 1: 4}
 
 Previously, if you supplied a malformed chemical formula, ChemPy would simply stop interpreting 
-at the last valid element. For example, if you forgot to capitalize the `H` in methane, 
-and wrote it as `"Ch4"`, `Substance.from_formula("Ch4").name` would return `C` 
+at the last valid element. For example, if you forgot to capitalize the ``H`` in methane, 
+and wrote it as ``"Ch4"``, ``Substance.from_formula("Ch4").name`` would return ``C`` 
 without providing any warning.
 
-Now, ChemPy will raise a ParseError:
+Now, ChemPy will raise a ParseException:
 
 .. code:: python
 
@@ -221,8 +221,8 @@ Now, ChemPy will raise a ParseError:
 
 Note that ChemPy has no way of knowing that you chose the desired element 
 if the supplied formula can be interpreted as valid. For example, if you are working with 
-carbon monosulfide (`CS`) and accidentally enter `Cs`, the symbol for the element cesium, 
-ChemPy will interpret the formula `Cs` as cesium.
+carbon monosulfide (``CS``) and accidentally enter ``Cs``, the symbol for the element cesium, 
+ChemPy will interpret the formula ``Cs`` as cesium.
 
 
 Balancing stoichiometry of a chemical reaction
