@@ -193,6 +193,36 @@ ChemPy can also understand notation such as
    >>> Substance.from_formula("H2O(s)").composition
    {1: 2, 8: 1}
 
+Breaking change in v???: Malformed chemical formulas will now yield a parse error.
+For example, consider methane, whose formula should be `"CH4"`.
+First, with the chemical formula entered correctly, the results will be as expected for methane:
+
+.. code:: python
+
+   >>> from chempy import Substance
+   >>> methanol = Substance.from_formula("CH4")
+   >>> methanol.name
+   "CH4"
+   >>> methane.composition
+   {6: 1, 1: 4}
+
+Previously, if you supplied a malformed chemical formula, ChemPy would simply stop interpreting 
+at the last valid element. For example, if you forgot to capitalize the `H` in methane, 
+and wrote it as `"Ch4"`, `Substance.from_formula("Ch4").name` would return `C` 
+without providing any warning.
+
+Now, ChemPy will raise a ParseError:
+
+.. code:: python
+
+   >>> from chempy import Substance
+   >>> methanol = Substance.from_formula("Ch4")
+   ParseException
+
+Note that ChemPy has no way of knowing that you chose the desired element 
+if the supplied formula can be interpreted as valid. For example, if you are working with 
+carbon monosulfide (`CS`) and accidentally enter `Cs`, the symbol for the element cesium, 
+ChemPy will interpret the formula `Cs` as cesium.
 
 
 Balancing stoichiometry of a chemical reaction
