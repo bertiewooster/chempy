@@ -218,6 +218,7 @@ Now, ChemPy will raise a ParseException:
    >>> from chempy import Substance
    >>> methane_wrong = Substance.from_formula("Ch4")
    Traceback (most recent call last):
+   ...
    pyparsing.ParseException: Expected end of text, found 'h'  (at char 1), (line:1, col:2)
 
 Note that ChemPy has no way of knowing that you chose the desired element 
