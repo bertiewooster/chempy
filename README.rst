@@ -148,12 +148,13 @@ Parsing formulae
    211.955
 
 
-as you notice, in composition, the atomic numbers (and 0 for charge) is used as
-keys and the count of each kind became respective value.
+A composition is expressed as a set of key-value pairs; that is, a dictionary.
+Specifically, each key is an atomic number (or 0 for charge), 
+and the corresponding value is the respective count for that element (or charge).
 
 ChemPy can also understand notation such as
 
-- solvates (including hydrates); the notation for solvates is ``..``
+- solvates, for example hydrates; the notation for solvates is ``..``
 
 .. code:: python
 
