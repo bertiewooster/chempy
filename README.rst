@@ -193,9 +193,9 @@ ChemPy can also understand notation such as
    >>> Substance.from_formula("H2O(s)").composition
    {1: 2, 8: 1}
 
-Improved parsing v???: Malformed chemical formulas will now yield a parse error.
-For example, consider methane, whose formula should be ``"CH4"``.
-First, with the chemical formula entered correctly, the results will be as expected for methane:
+Improved parsing in v0.9.0: Invalid chemical formulas will now yield a parse error.
+For example, consider methane, whose formula is ``"CH4"``.
+With the chemical formula entered correctly, the results will be as expected for methane:
 
 .. code:: python
 
@@ -206,12 +206,12 @@ First, with the chemical formula entered correctly, the results will be as expec
    >>> methane.composition
    {6: 1, 1: 4}
 
-Previously, if you supplied a malformed chemical formula, ChemPy would simply stop interpreting 
+Previously, if you supplied an invalid chemical formula, ChemPy would simply stop interpreting 
 at the last valid element. For example, if you forgot to capitalize the ``H`` in methane, 
 and wrote it as ``"Ch4"``, ``Substance.from_formula("Ch4").name`` would return ``C`` 
 without providing any warning.
 
-Now, ChemPy will raise a ParseException:
+Now, ChemPy will raise a ParseException for an invalid chemical formula:
 
 .. code:: python
 
