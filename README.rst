@@ -139,7 +139,7 @@ Parsing formulae
    >>> from chempy import Substance
    >>> ferricyanide = Substance.from_formula('Fe(CN)6-3')
    >>> ferricyanide.composition
-   {0: -3, 26: 1, 6: 6, 7: 6}   
+   {26: 1, 6: 6, 7: 6, 0: -3}
    >>> print(ferricyanide.unicode_name)
    Fe(CN)₆³⁻
    >>> print(ferricyanide.latex_name + ", " + ferricyanide.html_name)
@@ -183,7 +183,7 @@ ChemPy can also understand notation such as
 
    >>> from chempy import Substance
    >>> Substance.from_formula("(Li@C60)+").composition
-   {0: 1, 3: 1, 6: 60}
+   {3: 1, 6: 60, 0: 1}
 
 - phases; the phase can be ``(s)`` for solid, ``(l)`` for liquid, ``(g)`` for gas, or ``(aq)`` for aqueous (dissolved in water)
 
@@ -202,7 +202,7 @@ First, with the chemical formula entered correctly, the results will be as expec
    >>> from chempy import Substance
    >>> methane = Substance.from_formula("CH4")
    >>> methane.name
-   "CH4"
+   'CH4'
    >>> methane.composition
    {6: 1, 1: 4}
 
@@ -217,8 +217,8 @@ Now, ChemPy will raise a ParseException:
 
    >>> from chempy import Substance
    >>> methane_wrong = Substance.from_formula("Ch4")
-   ParseException
-   Expected end of text, found 'h4'  (at char 1), (line:1, col:2)
+   Traceback (most recent call last):
+   pyparsing.ParseException: Expected end of text, found 'h'  (at char 1), (line:1, col:2)
 
 Note that ChemPy has no way of knowing that you chose the desired element 
 if the supplied formula can be interpreted as valid. For example, if you are working with 
